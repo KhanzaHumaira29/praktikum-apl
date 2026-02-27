@@ -26,7 +26,7 @@ int main(){
     //login
     while (jumlahPercobaan < 3) {
 
-        cout << " Silakan login untuk menggunakan Iconic Digital Time Converter\n";
+        cout << " Welcome! Silakan Login\n";
         cout << " Masukkan Username Anda : ";
         cin >> username;
         getline(cin, username);
