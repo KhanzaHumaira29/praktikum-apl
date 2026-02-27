@@ -6,6 +6,7 @@ int main(){
     //variabel login
     string username;
     string passwordInput;
+    string usernameAsli = "Khanza";
     string passwordAsli = "065";
     int jumlahPercobaan = 0;
 
@@ -28,14 +29,14 @@ int main(){
 
         cout << " Welcome! Silakan Login\n";
         cout << " Masukkan Username Anda : ";
-        cin >> username;
         getline(cin, username);
 
         cout << " Masukkan Password Anda (3 digit angka): ";
         getline(cin, passwordInput);
 
-        if (passwordInput == passwordAsli) {
-            cout << "\nLogin Berhasil!\n\n";
+        if (username == usernameAsli && passwordInput == passwordAsli) {
+            cout << "\nWelcome!" << username <<endl;
+            cout << "Login Berhasil.\n\n";
             break;
         }
         else {
@@ -115,7 +116,7 @@ int main(){
                 cout << "   Pilihan tidak valid!\n";
         }
 
-        cin.ignore(); //refresh line
+        cin.ignore(1000,'\n'); //hapus buffer
 
     } while (pilihanMenu != 4);
 
