@@ -127,7 +127,7 @@ int main() {
                 cout << "2. Lihat Member\n";
                 cout << "3. Ubah Member\n";
                 cout << "4. Hapus Member\n";
-                cout << "5. Logout\n";
+                cout << "5. Logout Menu Utama\n";
                 cout << "Pilih menu: ";
                 cin >> pilihanMenu;
 
@@ -265,7 +265,7 @@ int main() {
                 }
 
                 case 5:
-                    cout << "Thank You! Logout berhasil><\n";
+                    cout << "Thank You! Logout menu utama berhasil><\n";
                     break;
 
                 default:
