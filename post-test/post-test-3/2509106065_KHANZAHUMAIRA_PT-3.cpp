@@ -3,17 +3,20 @@
 #include <string>
 using namespace std;
 
-struct Akun {
+struct Akun
+{
     string username;
     string password;
 };
 
-struct Membership {
+struct Membership
+{
     string jenisMembership;
     int durasiBulan;
 };
 
-struct MemberGym {
+struct MemberGym
+{
     int idMember;
     string namaMember;
     int umurMember;
@@ -34,7 +37,6 @@ int hitungMemberRekursif(int jumlahMember);
 int main()
 {
     Akun akunUser;
-
     akunUser.username = "Khanza";
     akunUser.password = "065";
 
@@ -42,11 +44,10 @@ int main()
 
     int jumlahMember = 0;
     int autoID = 1;
-
     int menuAwal;
 
-    do {
-
+    do
+    {
         cout << "\n====================================\n";
         cout << "     SISTEM MANAJEMEN MEMBER GYM\n";
         cout << "====================================\n";
@@ -60,30 +61,35 @@ int main()
         cout << " Pilih menu : ";
         cin >> menuAwal;
 
-        switch(menuAwal)
+        switch (menuAwal)
         {
+            case 1:
+            {
+                if (loginUser(akunUser))
+                {
+                    menuUtama(daftarMember, jumlahMember, autoID);
+                }
+                break;
+            }
 
-        case 1:
+            case 2:
+            {
+                cout << "\nTerima kasih telah menggunakan program.\n";
+                break;
+            }
 
-            if(loginUser(akunUser))
-                menuUtama(daftarMember, jumlahMember, autoID);
-
-            break;
-
-        case 2:
-            cout << "\nTerima kasih telah menggunakan program.\n";
-            break;
-
-        default:
-            cout << "\nMenu tidak tersedia.\n";
+            default:
+            {
+                cout << "\nMenu tidak tersedia.\n";
+            }
         }
 
-    } while(menuAwal != 2);
+    } while (menuAwal != 2);
 
     return 0;
 }
 
-// FUNGSI RETURN ADA YA INI BANG & MBA...
+// Fungsi login user
 bool loginUser(Akun akunUser)
 {
     string inputUsername;
@@ -123,8 +129,8 @@ void menuUtama(MemberGym daftarMember[], int &jumlahMember, int &autoID)
 {
     int menu;
 
-    do {
-
+    do
+    {
         cout << "+---------------------------+\n";
         cout << "|        MENU UTAMA         |\n";
         cout << "+---------------------------+\n";
@@ -137,40 +143,50 @@ void menuUtama(MemberGym daftarMember[], int &jumlahMember, int &autoID)
         cout << " Pilih menu : ";
         cin >> menu;
 
-        switch(menu)
+        switch (menu)
         {
+            case 1:
+            {
+                tambahMember(daftarMember, jumlahMember, autoID);
+                break;
+            }
 
-        case 1:
-            tambahMember(daftarMember, jumlahMember, autoID);
-            break;
+            case 2:
+            {
+                lihatMember(daftarMember, jumlahMember);
+                break;
+            }
 
-        case 2:
-            lihatMember(daftarMember, jumlahMember);
-            break;
+            case 3:
+            {
+                updateMember(daftarMember, jumlahMember);
+                break;
+            }
 
-        case 3:
-            updateMember(daftarMember, jumlahMember);
-            break;
+            case 4:
+            {
+                hapusMember(daftarMember, jumlahMember);
+                break;
+            }
 
-        case 4:
-            hapusMember(daftarMember, jumlahMember);
-            break;
+            case 5:
+            {
+                cout << "\nLogout berhasil.\n";
+                break;
+            }
 
-        case 5:
-            cout << "\nLogout berhasil.\n";
-            break;
-
-        default:
-            cout << "Menu tidak tersedia.\n";
+            default:
+            {
+                cout << "Menu tidak tersedia.\n";
+            }
         }
 
-    } while(menu != 5);
+    } while (menu != 5);
 }
 
-// PROSEDUR ADA YA INI BANG & MBA...
 void tambahMember(MemberGym daftarMember[], int &jumlahMember, int &autoID)
 {
-    if(jumlahMember >= 100)
+    if (jumlahMember >= 100)
     {
         cout << "Data member sudah penuh.\n";
         return;
@@ -183,19 +199,22 @@ void tambahMember(MemberGym daftarMember[], int &jumlahMember, int &autoID)
     cout << "Nama Member : ";
     cin >> daftarMember[jumlahMember].namaMember;
 
-    do {
+    do
+    {
         cout << "Umur Member : ";
         cin >> daftarMember[jumlahMember].umurMember;
 
-        if(daftarMember[jumlahMember].umurMember < 0)
+        if (daftarMember[jumlahMember].umurMember < 0)
+        {
             cout << "Umur tidak boleh negatif.\n";
+        }
 
-    } while(daftarMember[jumlahMember].umurMember < 0);
+    } while (daftarMember[jumlahMember].umurMember < 0);
 
     int pilihanMembership;
 
-    do {
-
+    do
+    {
         cout << "\nPilih Jenis Membership\n";
         cout << "1. Reguler\n";
         cout << "2. Ultra\n";
@@ -203,17 +222,19 @@ void tambahMember(MemberGym daftarMember[], int &jumlahMember, int &autoID)
         cout << "Pilihan : ";
         cin >> pilihanMembership;
 
-        if(pilihanMembership < 1 || pilihanMembership > 3)
+        if (pilihanMembership < 1 || pilihanMembership > 3)
+        {
             cout << "Pilihan tidak valid.\n";
+        }
 
-    } while(pilihanMembership < 1 || pilihanMembership > 3);
+    } while (pilihanMembership < 1 || pilihanMembership > 3);
 
-    if(pilihanMembership == 1)
+    if (pilihanMembership == 1)
     {
         daftarMember[jumlahMember].informasiMembership.jenisMembership = "Reguler";
         daftarMember[jumlahMember].informasiMembership.durasiBulan = 1;
     }
-    else if(pilihanMembership == 2)
+    else if (pilihanMembership == 2)
     {
         daftarMember[jumlahMember].informasiMembership.jenisMembership = "Ultra";
         daftarMember[jumlahMember].informasiMembership.durasiBulan = 6;
@@ -231,7 +252,7 @@ void tambahMember(MemberGym daftarMember[], int &jumlahMember, int &autoID)
 
 void lihatMember(MemberGym daftarMember[], int jumlahMember)
 {
-    if(jumlahMember == 0)
+    if (jumlahMember == 0)
     {
         cout << "\nBelum ada data member.\n";
         return;
@@ -241,7 +262,7 @@ void lihatMember(MemberGym daftarMember[], int jumlahMember)
     cout << "| ID | Nama          | Umur | Membership  | Durasi |\n";
     cout << "+----+---------------+------+-------------+--------+\n";
 
-    for(int i = 0; i < jumlahMember; i++)
+    for (int i = 0; i < jumlahMember; i++)
     {
         cout << "| "
             << setw(2) << daftarMember[i].idMember << " | "
@@ -265,28 +286,31 @@ void updateMember(MemberGym daftarMember[], int jumlahMember)
     cout << "Masukkan ID Member yang ingin diupdate: ";
     cin >> id;
 
-    for(int i = 0; i < jumlahMember; i++)
+    for (int i = 0; i < jumlahMember; i++)
     {
-        if(daftarMember[i].idMember == id)
+        if (daftarMember[i].idMember == id)
         {
             ditemukan = true;
 
             cout << "Nama Member : ";
             cin >> daftarMember[i].namaMember;
 
-            do {
+            do
+            {
                 cout << "Umur Member : ";
                 cin >> daftarMember[i].umurMember;
 
-                if(daftarMember[i].umurMember < 0)
+                if (daftarMember[i].umurMember < 0)
+                {
                     cout << "Umur tidak boleh negatif.\n";
+                }
 
-            } while(daftarMember[i].umurMember < 0);
+            } while (daftarMember[i].umurMember < 0);
 
             int pilihanMembership;
 
-            do {
-
+            do
+            {
                 cout << "\nPilih Jenis Membership\n";
                 cout << "1. Reguler\n";
                 cout << "2. Ultra\n";
@@ -294,17 +318,19 @@ void updateMember(MemberGym daftarMember[], int jumlahMember)
                 cout << "Pilihan : ";
                 cin >> pilihanMembership;
 
-                if(pilihanMembership < 1 || pilihanMembership > 3)
+                if (pilihanMembership < 1 || pilihanMembership > 3)
+                {
                     cout << "Pilihan tidak valid.\n";
+                }
 
-            } while(pilihanMembership < 1 || pilihanMembership > 3);
+            } while (pilihanMembership < 1 || pilihanMembership > 3);
 
-            if(pilihanMembership == 1)
+            if (pilihanMembership == 1)
             {
                 daftarMember[i].informasiMembership.jenisMembership = "Reguler";
                 daftarMember[i].informasiMembership.durasiBulan = 1;
             }
-            else if(pilihanMembership == 2)
+            else if (pilihanMembership == 2)
             {
                 daftarMember[i].informasiMembership.jenisMembership = "Ultra";
                 daftarMember[i].informasiMembership.durasiBulan = 6;
@@ -320,8 +346,10 @@ void updateMember(MemberGym daftarMember[], int jumlahMember)
         }
     }
 
-    if(!ditemukan)
+    if (!ditemukan)
+    {
         cout << "ID tidak ditemukan.\n";
+    }
 }
 
 void hapusMember(MemberGym daftarMember[], int &jumlahMember)
@@ -331,12 +359,14 @@ void hapusMember(MemberGym daftarMember[], int &jumlahMember)
     cout << "Masukkan ID Member yang ingin dihapus: ";
     cin >> id;
 
-    for(int i = 0; i < jumlahMember; i++)
+    for (int i = 0; i < jumlahMember; i++)
     {
-        if(daftarMember[i].idMember == id)
+        if (daftarMember[i].idMember == id)
         {
-            for(int j = i; j < jumlahMember - 1; j++)
-                daftarMember[j] = daftarMember[j+1];
+            for (int j = i; j < jumlahMember - 1; j++)
+            {
+                daftarMember[j] = daftarMember[j + 1];
+            }
 
             jumlahMember--;
 
@@ -348,11 +378,13 @@ void hapusMember(MemberGym daftarMember[], int &jumlahMember)
     cout << "ID tidak ditemukan.\n";
 }
 
-// FUNGSI REKURSIF ADA YA INI BANG & MBA...
+// Fungsi rekursif
 int hitungMemberRekursif(int jumlahMember)
 {
-    if(jumlahMember == 0)
+    if (jumlahMember == 0)
+    {
         return 0;
+    }
 
     return 1 + hitungMemberRekursif(jumlahMember - 1);
 }
